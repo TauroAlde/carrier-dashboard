@@ -19,6 +19,7 @@ export const carrierStats: CarrierStat[] = [
     total_shipments: 50,
     deliveries: 40,
     failures: 10,
+    cancelled: 3,
     status: 'warning',
     performance_score: 0.65,
   },

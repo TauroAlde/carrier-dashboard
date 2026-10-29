@@ -10,6 +10,9 @@ export type CarrierStat = {
   total_shipments: number
   deliveries: number
   failures: number
+  // Cancelled by the user: shown for context, not part of the success rate.
+  // Optional so the dashboard still works with an API that doesn't send it.
+  cancelled?: number
   status: CarrierStatus
   performance_score: number
 }

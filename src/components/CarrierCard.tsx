@@ -27,7 +27,7 @@ export function CarrierCard({ stat, rank }: Props) {
           <dd className="font-semibold text-slate-900">{formatPercent(stat.success_rate)}</dd>
         </div>
         <div>
-          <dt className="text-slate-500">Avg. delivery</dt>
+          <dt className="text-slate-500">Avg. days</dt>
           <dd className="font-semibold text-slate-900">{formatDays(stat.avg_days)}</dd>
         </div>
         <div>
@@ -39,6 +39,12 @@ export function CarrierCard({ stat, rank }: Props) {
           <dd className="font-semibold text-slate-900">{stat.failures}</dd>
         </div>
       </dl>
+
+      {/* Cancellations are the user's doing, not the carrier's, so they are
+          shown as a footnote instead of a metric next to the success rate. */}
+      {(stat.cancelled ?? 0) > 0 && (
+        <p className="mt-3 text-xs text-slate-500">{stat.cancelled} cancelled by the user (not counted)</p>
+      )}
 
       <div className="mt-4">
         <div className="mb-1 flex justify-between text-xs text-slate-500">

@@ -51,4 +51,14 @@ describe('App', () => {
     expect(cards).toHaveLength(1)
     expect(cards[0]).toHaveTextContent('#2')
   })
+
+  it('notes user cancellations without counting them as failures', async () => {
+    mockFetch({ json: () => Promise.resolve(carrierStats) })
+    renderApp()
+
+    const estafeta = await screen.findByRole('article', { name: 'estafeta' })
+    expect(estafeta).toHaveTextContent('3 cancelled by the user')
+    // Carriers with no cancellations don't show the note at all.
+    expect(screen.getByRole('article', { name: 'dhl' })).not.toHaveTextContent('cancelled')
+  })
 })
